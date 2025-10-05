@@ -288,11 +288,12 @@ deaths <- resp_body_json(response3, simplifyVector = TRUE)
 
 ```{r}
 deaths<- deaths|>
-  select(state=state, date=end_date, deaths= total_deaths)|>
+  select(state=state, date=end_date, deaths= covid_19_deaths)|>
   mutate(
     deaths=as.numeric(deaths),
     date=as.Date(date)
-  )
+  )|>
+  filter(state!="New York City")
 ```
 
 15. Using the `deaths` dataset you created, make a bar plot showing the total COVID-19 deaths by state. Show only the top 10 states with the highest death counts. Order the bars from highest to lowest and use appropriate labels and title.
